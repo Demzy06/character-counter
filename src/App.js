@@ -204,9 +204,10 @@ function CountBox({ style, count, src, text }) {
 }
 
 function LetterDensity({ wordDensity }) {
-  const density = Object.entries(wordDensity)
-  // console.log(xo, counts)
-  // console.log(xo, wordDensity)
+  const [isMore, setIsMore] = useState(false)
+  const density = isMore ? Object.entries(wordDensity) : Object.entries(wordDensity).slice(0, 5)
+  console.log(density)
+
 
   return (
     <div className="letter-density-container">
@@ -226,6 +227,10 @@ function LetterDensity({ wordDensity }) {
           </li>
         )}
       </ul>
+      <div className="letter-density-expand">
+        <p onClick={() => setIsMore(cur => !cur)}>See more</p>
+        {/* <img></img> */}
+      </div>
     </div>
   )
 }
