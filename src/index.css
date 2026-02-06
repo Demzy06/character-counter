@@ -16,6 +16,7 @@
   --progress-bar-value: #d3a0fa;
   --progress-bar: #21222c;
   --char-limit: #404254;
+  --letter-density-deep-purple: #cd97f3;
   --bg-image: url("assets/bg-dark-theme.png");
 }
 
@@ -595,4 +596,24 @@
 }
 .list > span > p {
   width: fit-content;
+}
+.letter-density-expand {
+  margin-top: 15px;
+  cursor: pointer;
+  width: fit-content;
+}
+.letter-density-expand > p {
+  color: var(--primary-text-color);
+  display: flex;
+  align-items: center;
+}
+.letter-density-expand :hover {
+  color: #cd97f3;
+}
+.letter-density-expand > img {
+  color: var(--primary-text-color);
+}
+.angle-icon {
+  color: var(--primary-text-color);
+  margin-left: 5px;
 }
