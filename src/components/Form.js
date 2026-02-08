@@ -24,7 +24,7 @@ export default function Form({ totalChar, text, setText, onHandleToggleSpace, ex
       inputEl.current.classList.remove("textarea-disclamer-style")
       addInputOutline()
     }
-    if (document.activeElement === characterLimitInput.current && limit == "") {
+    if (document.activeElement === characterLimitInput.current && limit === "") {
       inputEl.current.classList.remove("textarea-disclamer-style")
     }
   }, [totalChar, limit])
