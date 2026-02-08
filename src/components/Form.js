@@ -5,6 +5,7 @@ export default function Form({ totalChar, text, setText, onHandleToggleSpace, ex
   const [limit, setLimit] = useState()
   const [bodyEl] = [...document.getElementsByTagName("body")]
   const inputEl = useRef(null)
+  const characterLimitInput = useRef(null)
 
   function addInputOutline() {
     inputEl.current.classList.add("textarea-style")
@@ -22,7 +23,9 @@ export default function Form({ totalChar, text, setText, onHandleToggleSpace, ex
     if (totalChar <= limit && inputEl.current.value !== "") {
       inputEl.current.classList.remove("textarea-disclamer-style")
       addInputOutline()
-      // inputEl.current.classList.add("textarea-style")
+    }
+    if (document.activeElement === characterLimitInput.current && limit == "") {
+      inputEl.current.classList.remove("textarea-disclamer-style")
     }
   }, [totalChar, limit])
 
@@ -43,11 +46,12 @@ export default function Form({ totalChar, text, setText, onHandleToggleSpace, ex
           onClick={() => addInputOutline()}
           value={text}
           onChange={(e) => setText(e.target.value)} placeholder="Start typing here... (or paste your text here)" />
-        {totalChar > limit ? (
-          <div className="declaimer-message">
+        {totalChar > limit && limit !== "" ? (
+          <div div className="declaimer-message">
             <img src={icon_info} alt="info-icon" />
             <p>Limit reached! Your text exceeds {limit} characters</p>
-          </div>) : null}
+          </div>) : null
+        }
 
         <div className="checkboxs">
           <div>
@@ -59,12 +63,17 @@ export default function Form({ totalChar, text, setText, onHandleToggleSpace, ex
               <input type="checkbox" value={charLimit} onChange={() => onHandleToggleLimit()} />
               Set Character Limit
 
-              {charLimit && <input type="text" className="char-limit" value={limit} onChange={(e) => setLimit(e.target.value)} />}
+              {charLimit && <input
+                type="text"
+                className="char-limit"
+                value={limit}
+                onChange={(e) => setLimit(e.target.value)}
+                ref={characterLimitInput} />}
             </label>
           </div>
           <p>Approx. reading time: X1 minute</p>
         </div>
-      </form>
+      </form >
     </div >
   )
 }
